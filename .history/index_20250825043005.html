@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Assessment System</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-water"></i>
+                <span>FloodSafe AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-section="analysis">Analysis</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-section="history">History</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-section="about">About</a></li>
+                <li class="nav-item" id="auth-item"><a href="#" class="nav-link" data-section="login">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Sections -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>AI-Powered Flood Risk Assessment</h1>
+                    <p>Using advanced AI to analyze images and predict flood risks in your area</p>
+                    <button class="cta-button" id="get-started-btn">Get Started</button>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/flood1.jpeg" alt="Flood Assessment">
+                </div>
+            </div>
+            
+            <div class="features">
+                <h2>How It Works</h2>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <i class="fas fa-upload"></i>
+                        <h3>Upload Images</h3>
+                        <p>Submit terrain or flood images for AI analysis</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Analysis</h3>
+                        <p>Our advanced AI analyzes water levels, terrain, and risks</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Get Detailed Report</h3>
+                        <p>Receive comprehensive risk assessment with actionable insights</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Section -->
+        <section id="analysis" class="section">
+            <div class="analysis-container">
+                <h2>Flood Risk Analysis</h2>
+                <p class="section-description">Upload images for AI-powered flood risk assessment</p>
+                
+                <div class="analysis-params">
+                    <div class="param-group">
+                        <label for="region-select">Region Type</label>
+                        <select id="region-select">
+                            <option value="urban">Urban Area</option>
+                            <option value="rural">Rural Area</option>
+                            <option value="coastal">Coastal Region</option>
+                            <option value="river">River Basin</option>
+                        </select>
+                    </div>
+                    
+                    <div class="param-group">
+                        <label for="season-select">Season</label>
+                        <select id="season-select">
+                            <option value="spring">Spring</option>
+                            <option value="summer">Summer</option>
+                            <option value="fall">Fall</option>
+                            <option value="winter">Winter</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="upload-area" id="image-upload">
+                    <div class="drop-zone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Drop flood or terrain images here or click to browse</h3>
+                        <p>Supports JPG, PNG up to 10MB. For best results, upload clear images of flooded areas or terrain.</p>
+                        <input type="file" id="file-input" accept="image/*">
+                    </div>
+                    <div class="preview-area" id="image-preview"></div>
+                </div>
+                
+                <div class="analysis-progress hidden" id="analysis-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p id="progress-text">Initializing analysis...</p>
+                </div>
+                
+                <button class="analyze-btn" id="analyze-button">
+                    <i class="fas fa-spinner fa-spin hidden"></i>
+                    <span>Analyze Flood Risk</span>
+                </button>
+                
+                <div class="image-analysis-results hidden" id="image-analysis-results">
+                    <h3>AI Analysis Details</h3>
+                    <div class="analysis-features" id="detected-features">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="results-area hidden">
+                    <h3>Flood Risk Assessment</h3>
+                    <div class="risk-meter">
+                        <div class="risk-level" id="risk-level">Low</div>
+                        <div class="meter-gauge">
+                            <div class="gauge-fill" id="gauge-fill"></div>
+                        </div>
+                        <div class="gauge-markers">
+                            <span>Low</span>
+                            <span>Moderate</span>
+                            <span>High</span>
+                            <span>Extreme</span>
+                        </div>
+                    </div>
+                    
+                    <div class="risk-metrics">
+                        <div class="risk-metric">
+                            <div class="metric-label">Risk Probability</div>
+                            <div class="metric-value" id="risk-probability">25%</div>
+                        </div>
+                        <div class="risk-metric">
+                            <div class="metric-label">Estimated Elevation</div>
+                            <div class="metric-value" id="elevation-value">Unknown</div>
+                        </div>
+                        <div class="risk-metric">
+                            <div class="metric-label">Distance from Water</div>
+                            <div class="metric-value" id="distance-value">Unknown</div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-details">
+                        <div class="result-card">
+                            <h4>AI Analysis</h4>
+                            <p id="ai-analysis">No analysis available yet. Upload an image to begin assessment.</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Recommended Actions</h4>
+                            <ul id="recommended-actions">
+                                <li>Upload an image to get specific recommendations</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="save-btn" id="save-results">Save Results</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section id="history" class="section">
+            <div class="history-container">
+                <h2>Analysis History</h2>
+                <p class="section-description">Review your previous flood risk assessments</p>
+                
+                <div class="history-filters">
+                    <select id="time-filter">
+                        <option value="all">All Time</option>
+                        <option value="week">Past Week</option>
+                        <option value="month">Past Month</option>
+                    </select>
+                    <select id="risk-filter">
+                        <option value="all">All Risk Levels</option>
+                        <option value="low">Low Risk</option>
+                        <option value="moderate">Moderate Risk</option>
+                        <option value="high">High Risk</option>
+                        <option value="very-high">Very High Risk</option>
+                    </select>
+                </div>
+                
+                <div class="history-list" id="history-list">
+                    <div class="empty-state">
+                        <i class="fas fa-history"></i>
+                        <h3>No analysis history yet</h3>
+                        <p>Perform your first analysis to see results here</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="about-container">
+                <h2>About FloodSafe AI</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>FloodSafe AI uses advanced artificial intelligence to analyze images and provide accurate flood risk assessments. Our system processes terrain images to identify potential flood risks and provide actionable recommendations.</p>
+                        <h3>How It Works:</h3>
+                        <ul>
+                            <li>Upload images of terrain or flooded areas</li>
+                            <li>Our AI analyzes water levels, terrain features, and risk factors</li>
+                            <li>Receive detailed assessment with specific recommendations</li>
+                            <li>All processing happens securely on our servers</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="assets/flood3.jpg" alt="About FloodSafe">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login" class="section">
+            <div class="auth-container">
+                <div class="auth-form" id="login-form">
+                    <h2>Login to Your Account</h2>
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password">
+                    </div>
+                    <div class="form-group">
+                        <button class="auth-btn" id="login-button">Login</button>
+                    </div>
+                    <p class="auth-switch">Don't have an account? <a href="#" id="switch-to-register">Register</a></p>
+                </div>
+                
+                <div class="auth-form hidden" id="register-form">
+                    <h2>Create an Account</h2>
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">Confirm Password</label>
+                        <input type="password" id="register-confirm" placeholder="Confirm your password">
+                    </div>
+                    <div class="form-group">
+                        <button class="auth-btn" id="register-button">Register</button>
+                    </div>
+                    <p class="auth-switch">Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Animation -->
+    <div class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <p>Analyzing your image with AI...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/api-service.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/analysis.js"></script>
+    <script src="scripts/history.js"></script>
+</body>
+</html>
