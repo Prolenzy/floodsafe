@@ -1,0 +1,18 @@
+{
+  "name": "analyze-image-function",
+  "version": "1.0.0",
+  "description": "Netlify function for flood image analysis using Gemini AI",
+  "main": "analyze-image.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.2.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "netlify",
+    "function",
+    "gemini-ai",
+    "flood-assessment"
+  ]
+}
+
+

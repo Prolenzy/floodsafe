@@ -1,5 +1,5 @@
 {
-    "name": "floodsafe-ai",
+   "name": "floodsafe-ai",
   "version": "1.0.0",
   "description": "AI-powered flood risk assessment system",
   "main": "index.html",
@@ -20,4 +20,16 @@
 }
 
 
+ 
+  "name": "floodsafe-ai",
+  "version": "1.0.0",
+  "description": "AI-powered flood risk assessment system",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build process needed for static site'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": ["flood", "assessment", "ai", "javascript"],
+  "author": "Your Name",
+  "license": "MIT"
  
